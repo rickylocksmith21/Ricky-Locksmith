@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricky Locksmith | Emergency & Professional Locksmith Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #0b132b;
+            --secondary-blue: #1c2541;
+            --accent-red: #d62828;
+            --bright-red: #ff3b3f;
+            --text-light: #f8f9fa;
+            --text-muted: #a0aec0;
+            --glass-bg: rgba(28, 37, 65, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Gradients */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .glow-1, .glow-2 {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.25;
+            animation: float 10s infinite alternate ease-in-out;
+        }
+
+        .glow-1 {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: var(--accent-red);
+        }
+
+        .glow-2 {
+            bottom: -10%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: #3a86ff;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 30px) scale(1.1); }
+        }
+
+        /* Typography & Utility */
+        h1, h2, h3 {
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .highlight-red {
+            color: var(--bright-red);
+            text-shadow: 0 0 20px rgba(214, 40, 40, 0.4);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-red), var(--bright-red));
+            color: white;
+            box-shadow: 0 10px 30px rgba(214, 40, 40, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(255, 59, 63, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+        }
+
+        /* Header / Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .logo img {
+            height: 48px;
+            object-fit: contain;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--bright-red);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Sections Common */
+        section {
+            padding: 100px 8% 60px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 40px;
+            padding-top: 140px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--glass-border);
+        }
+
+        .badge {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            background: var(--secondary-blue);
+            border: 1px solid var(--glass-border);
+            padding: 15px 25px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .badge i {
+            font-size: 1.8rem;
+            color: var(--bright-red);
+        }
+
+        /* Home Section */
+        .home-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 30px;
+            padding: 60px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .home-image {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        /* About Section */
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            order: 2;
+            border: 1px solid var(--glass-border);
+        }
+
+        .about-content {
+            order: 1;
+        }
+
+        /* Services Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--secondary-blue);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--bright-red);
+            box-shadow: 0 20px 40px rgba(214, 40, 40, 0.2);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .service-card-body {
+            padding: 25px;
+        }
+
+        .service-card-body h3 {
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+
+        .service-card-body p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Reviews Section */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .review-card {
+            background: rgba(28, 37, 65, 0.5);
+            border: 1px solid var(--glass-border);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .stars {
+            color: #ffc107;
+            margin-bottom: 15px;
+        }
+
+        .review-card p {
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .reviewer-name {
+            font-weight: 700;
+            color: var(--bright-red);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: var(--secondary-blue);
+            padding: 50px;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .contact-info-item i {
+            width: 50px;
+            height: 50px;
+            background: rgba(214, 40, 40, 0.1);
+            color: var(--bright-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            border: 1px solid rgba(214, 40, 40, 0.3);
+        }
+
+        .contact-info-item a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-info-item a:hover {
+            color: var(--bright-red);
+        }
+
+        /* Footer */
+        footer {
+            background: #050914;
+            padding: 60px 8% 30px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-gmb iframe {
+            width: 100%;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .footer-links h4 {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a, .policy-btn {
+            color: var(--text-muted);
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover, .policy-btn:hover {
+            color: var(--bright-red);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Modals for Policy */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--secondary-blue);
+            border: 1px solid var(--glass-border);
+            width: 90%;
+            max-width: 650px;
+            max-height: 80vh;
+            border-radius: 20px;
+            padding: 40px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            color: var(--bright-red);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero, .home-section, .about-section, .contact-container, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-image {
+                order: 0;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            nav {
+                display: none; /* Add mobile menu JS toggler if required */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow">
+        <div class="glow-1"></div>
+        <div class="glow-2"></div>
+    </div>
+
+    <header>
+        <a href="#" class="logo">
+            <img src="https://rickylocksmith.com/wp-content/uploads/2026/01/Ricky-Locksmith-Logo-1.avif" alt="Ricky Locksmith Logo">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="tel:+17169946377" class="btn btn-primary"><i class="fa-solid fa-phone"></i> Call Now</a>
+    </header>
+
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1>Master Locksmith & <span class="highlight-red">Security Solutions</span></h1>
+            <p>From precision key cutting and lockout assistance to advanced security installations, Ricky Locksmith delivers fast, trustworthy, and expert security services for your vehicle, home, and business.</p>
+            <div style="display: flex; gap: 15px;">
+                <a href="#contact" class="btn btn-primary">Get Fast Service</a>
+                <a href="#services" class="btn btn-secondary">Explore Services</a>
+            </div>
+        </div>
+        <div class="hero-image-wrapper">
+            <img src="https://nbss.edu/wp-content/uploads/2022/02/HowtoBecomeLocksmith_1.jpg" alt="Locksmith at work" class="hero-image">
+            <div class="badge">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div>
+                    <strong>24/7 Available</strong>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Fast Mobile Dispatch</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="home-details">
+        <div class="home-section">
+            <img src="https://security-masters.co.uk/wp-content/uploads/2020/05/003.-Professional_LockSmith_iStock-1139213466.jpg" alt="Professional Locksmithing" class="home-image">
+            <div>
+                <h2>Your Security Is Our Highest Priority</h2>
+                <p style="color: var(--text-muted); margin: 20px 0;">Locks are your first line of defense against unwanted entry. At Ricky Locksmith, we combine traditional mechanical craftsmanship with modern transponder programming technology to keep your estate and vehicles completely secure.</p>
+                <a href="#services" class="btn btn-secondary">Read More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <div class="about-content">
+            <h2 class="section-title" style="text-align: left;">About <span class="highlight-red">Ricky Locksmith</span></h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">With years of dedicated experience serving Florida communities, Ricky Locksmith has built a reputation on reliability, swift response times, and exceptional service standard. Whether you are locked out of your car late at night or need high-security key duplication for modern vehicles, our master technicians arrive equipped with state-of-the-art tools to solve your problem on the spot.</p>
+            <p style="color: var(--text-muted);">We pride ourselves on transparent pricing, courteous communication, and rapid turnaround for all residential, commercial, and automotive locksmith needs.</p>
+        </div>
+        <img src="https://www.servicefusion.com/wp-content/uploads/2023/11/Older-locksmith-with-coworker-working.jpg" alt="Experienced Locksmith Technicians" class="about-image">
+    </section>
+
+    <section id="services">
+        <h2 class="section-title">Our Premier <span class="highlight-red">Services</span></h2>
+        <p class="section-subtitle">Dedicated, fast, and modern automotive and property lockout solutions.</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="https://www.keys4cars.ca/userfiles/images/banner/car-key-maker.jpg" alt="Car Key Development">
+                <div class="service-card-body">
+                    <h3>Car Key Development</h3>
+                    <p>Advanced electronic fob creation, smart key generation, and transponder chip programming right at your location.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://i.ytimg.com/vi/KGpgEhqRmtk/maxresdefault.jpg" alt="Key Duplication">
+                <div class="service-card-body">
+                    <h3>Key Duplication</h3>
+                    <p>High-precision key duplication using laser-guided cutting machines to guarantee a seamless fit every single time.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://avatars.mds.yandex.net/get-altay/13091609/2a0000018e38575503c034c70c395fa1b684/XXL_height" alt="Lockout Assistance">
+                <div class="service-card-body">
+                    <h3>Lockout Assistance</h3>
+                    <p>Fast emergency response for auto, home, and commercial lockouts using non-destructive damage-free entry techniques.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews">
+        <h2 class="section-title">Customer <span class="highlight-red">Reviews</span></h2>
+        <p class="section-subtitle">Read what our clients have to say about our fast turnaround and trustworthy solutions.</p>
+        
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"Locked my keys in my vehicle while heading out to work. Ricky Locksmith arrived within 20 minutes and had my car opened safely in no time. Super friendly and reliable!"</p>
+                <div class="reviewer-name">- Michael S.</div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"Needed a spare key programmed for my push-to-start car. Dealership quoted me twice the price. Ricky Locksmith made me a key on-site instantly!"</p>
+                <div class="reviewer-name">- Sarah L.</div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"Professional, efficient, and affordable. Replaced all the old deadbolts in our new house seamlessly. I highly recommend their locksmith services!"</p>
+                <div class="reviewer-name">- David R.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Contact <span class="highlight-red">Us Today</span></h2>
+        <p class="section-subtitle">Reach out for quick assistance or set up a technician visit.</p>
+
+        <div class="contact-container">
+            <div>
+                <div class="contact-info-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <div>
+                        <strong>Call Us 24/7</strong>
+                        <div><a href="tel:+17169946377">+1 (716) 994-6377</a></div>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div>
+                        <strong>Email Address</strong>
+                        <div><a href="mailto:service@rickylocksmith.com">service@rickylocksmith.com</a></div>
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <strong>Service Location</strong>
+                        <div>6131 Bangalow Dr, Lake Worth Beach, FL 33463</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-gmb">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d327675.49022704654!2d-80.12375949999999!3d26.579427999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b1377aaca888859%3A0x5ada2acc68785cb0!2sRicky%20Locksmith!5e1!3m2!1sen!2s!4v1787948339313!5m2!1sen!2s" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <img src="https://rickylocksmith.com/wp-content/uploads/2026/01/Ricky-Locksmith-Logo-1.avif" alt="Ricky Locksmith" style="height:45px; margin-bottom:15px;">
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Providing premier automotive, residential, and commercial lock and key solutions across Lake Worth Beach and nearby areas.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Legal Policies</h4>
+                <ul>
+                    <li><button class="policy-btn" onclick="openModal('privacyModal')">Privacy Policy</button></li>
+                    <li><button class="policy-btn" onclick="openModal('termsModal')">Terms & Conditions</button></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Ricky Locksmith. All Rights Reserved.
+        </div>
+    </footer>
+
+    <div class="modal" id="privacyModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('privacyModal')">&times;</span>
+            <h3 style="margin-bottom: 15px;">Privacy Policy</h3>
+            <p style="color: var(--text-muted); font-size:0.9rem; margin-bottom: 10px;">At Ricky Locksmith (rickylocksmith.com), we respect and protect our client privacy. We only collect essential information required to fulfill mobile service dispatches, communicate regarding service updates, and manage customer inquiries.</p>
+            <p style="color: var(--text-muted); font-size:0.9rem;">We do not sell, rent, or lease customer data to third-party marketers. For full legal queries regarding personal records, contact service@rickylocksmith.com.</p>
+        </div>
+    </div>
+
+    <div class="modal" id="termsModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('termsModal')">&times;</span>
+            <h3 style="margin-bottom: 15px;">Terms & Conditions</h3>
+            <p style="color: var(--text-muted); font-size:0.9rem; margin-bottom: 10px;">By requesting services from Ricky Locksmith, clients agree to provide valid ownership verification prior to any vehicle or property entry. Prices are quoted based on standard service requirements and may adjust depending on key types or security lock complexities.</p>
+            <p style="color: var(--text-muted); font-size:0.9rem;">Services provided come with guaranteed workmanship standards. Payment is required upon completion of services rendered.</p>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
